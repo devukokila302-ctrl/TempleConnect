@@ -3104,9 +3104,9 @@ function createApiApp() {
   return app2;
 }
 
-// api/index.ts
+// server/api-entry.ts
 var app = createApiApp();
-var index_default = app;
+var api_entry_default = app;
 export {
-  index_default as default
+  api_entry_default as default
 };
