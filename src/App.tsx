@@ -99,8 +99,6 @@ const AppContent: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4 text-stone-400">
-            <span>Powered by Gemini 3.8 Flash</span>
-            <span>•</span>
             <span>Strict Role-Based Authorization</span>
           </div>
         </div>

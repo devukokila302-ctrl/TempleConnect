@@ -23,6 +23,9 @@ export function setStoredToken(token: string | null) {
   }
 }
 
+// Base URL support: If deployed with a separate backend URL, use VITE_API_URL, else use relative path
+const API_BASE_URL = (import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').replace(/\/$/, '');
+
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = getStoredToken();
   const headers: Record<string, string> = {
@@ -34,16 +37,18 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     headers['Authorization'] = `Bearer ${token}`;
   }
 
+  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint}`;
+
   let response: Response;
   try {
-    response = await fetch(endpoint, {
+    response = await fetch(url, {
       ...options,
       headers,
     });
   } catch (err: any) {
     // Retry once after 350ms in case the server was temporarily rebooting or busy
     await new Promise((res) => setTimeout(res, 350));
-    response = await fetch(endpoint, {
+    response = await fetch(url, {
       ...options,
       headers,
     });
