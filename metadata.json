@@ -1,0 +1,6 @@
+{
+  "name": "TempleConnect",
+  "description": "Comprehensive temple directory, devotee portal, contributor updates, and priest employment platform.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
